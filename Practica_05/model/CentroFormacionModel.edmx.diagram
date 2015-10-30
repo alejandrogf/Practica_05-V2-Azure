@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="aab510fdc4814368b477340299290bfd" Name="Diagram1">
-        <EntityTypeShape EntityType="CentroFormacionModel.Alumno" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CentroFormacionModel.Aula" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentroFormacionModel.Alumno" Width="1.5" PointX="0.5" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="CentroFormacionModel.Aula" Width="1.5" PointX="0.5" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CentroFormacionModel.Curso" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="CentroFormacionModel.Profesor" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CentroFormacionModel.ProfesorCurso" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />

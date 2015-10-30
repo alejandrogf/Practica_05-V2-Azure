@@ -7,9 +7,9 @@ using Practica_05.model;
 
 namespace Practica_05
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             int op;
             do
@@ -82,7 +82,7 @@ namespace Practica_05
             //ALUMNOS
             #region ALUMNOS
 
-            List<Alumno> listaAlumnos = new List<Alumno>()
+            var listaAlumnos = new List<Alumno>()
             {
                 new Alumno() {Nombre = "Julian Martinez", DNI = "12345678A"},
                 new Alumno() {Nombre = "Paco Porras", DNI = "98765678A"},
@@ -96,8 +96,8 @@ namespace Practica_05
             {
                 ctx.Alumno.AddRange(listaAlumnos);
                 //Commit a la BD
-                ctx.SaveChanges();
-                Console.WriteLine("\nAlumnos cargados.\nContinuar la carga...\n");
+                //ctx.SaveChanges();
+                Console.WriteLine("\nAlumnos Inicializados.\nContinuar la carga...\n");
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -110,7 +110,7 @@ namespace Practica_05
             //PROFESORES
             #region PROFESORES
 
-            List<Profesor> listaProfesores = new List<Profesor>()
+            var listaProfesores = new List<Profesor>()
             {
                 new Profesor() {Nombre = "El Bueno", Edad = 33},
                 new Profesor() {Nombre = "El Chungo", Edad = 22},
@@ -122,8 +122,8 @@ namespace Practica_05
             {
                 ctx.Profesor.AddRange(listaProfesores);
                 //Commit a la BD
-                ctx.SaveChanges();
-                Console.WriteLine("\nProfesores cargados.\nContinuar la carga...\n");
+                //ctx.SaveChanges();
+                Console.WriteLine("\nProfesores inicializados.\nContinuar la carga...\n");
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -135,7 +135,7 @@ namespace Practica_05
             //AULAS
             #region AULAS
 
-            List<Aula> listaAula = new List<Aula>()
+            var listaAula = new List<Aula>()
             {
                 new Aula() {Nombre = "Norte", Capacidad = 35},
                 new Aula() {Nombre = "Sur", Capacidad = 12},
@@ -146,8 +146,8 @@ namespace Practica_05
             {
                 ctx.Aula.AddRange(listaAula);
                 //Commit a la BD
-                ctx.SaveChanges();
-                Console.WriteLine("\nAulas cargadas.\nContinuar la carga...\n");
+                //ctx.SaveChanges();
+                Console.WriteLine("\nAulas inicializadas.\nContinuar la carga...\n");
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -160,7 +160,7 @@ namespace Practica_05
             //CURSOS
             #region CURSOS
 
-            List<Curso> listaCursos = new List<Curso>()
+            var listaCursos = new List<Curso>()
             {
                 new Curso()
                 {
@@ -168,7 +168,7 @@ namespace Practica_05
                     Duracion = 790,
                     Inicio = new DateTime(2015, 09, 01),
                     Fin = new DateTime(2016, 11, 30),
-                    idAula = 1
+                    Aula = listaAula[1]
                 },
                 new Curso()
                 {
@@ -223,8 +223,8 @@ namespace Practica_05
             {
                 ctx.Curso.AddRange(listaCursos);
                 //Commit a la BD
-                ctx.SaveChanges();
-                Console.WriteLine("\nCursos cargados.\nContinuar la carga...\n");
+                //ctx.SaveChanges();
+                Console.WriteLine("\nCursos inicializados.\nContinuar la carga...\n");
                 Console.ReadLine();
             }
             catch (Exception e)
@@ -238,11 +238,9 @@ namespace Practica_05
             //PROFESORCURSO
 
             #region PROFESORCURSO
-            var profesor1 = ctx.Profesor.Find(1);
-            var curso1 = ctx.Curso.Find(1);
-            List<ProfesorCurso> listaProfesorCursos = new List<ProfesorCurso>()
+            var listaProfesorCursos = new List<ProfesorCurso>()
             {
-                new ProfesorCurso() {idProfesor = profesor1.idProfesor, idCurso = curso1.idCurso, Horas = 190},
+                new ProfesorCurso() {Profesor = listaProfesores[1], idCurso = listaCursos[1].idCurso, Horas = 190},
                 //new ProfesorCurso() {idProfesor = 1, idCurso = 2, Horas = 50},
                 //new ProfesorCurso() {idProfesor = 1, idCurso = 7, Horas = 201},
                 //new ProfesorCurso() {idProfesor = 2, idCurso = 1, Horas = 600},
@@ -261,8 +259,8 @@ namespace Practica_05
             {
                 ctx.ProfesorCurso.AddRange(listaProfesorCursos);
                 //Commit a la BD
-                ctx.SaveChanges();
-                Console.WriteLine("\nRelación de Profesores y Cursos cargada." +
+                //ctx.SaveChanges();
+                Console.WriteLine("\nRelación de Profesores y Cursos inicializada." +
                                   "\nContinuar la carga...\n");
                 Console.ReadLine();
             }
@@ -272,7 +270,21 @@ namespace Practica_05
             }
 
             #endregion
-       }
+
+            //COMMIT A LA BBDD
+            try
+            {
+
+                ctx.SaveChanges();
+                Console.WriteLine("\nCarga de datos correcta.\n");
+                Console.ReadLine();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+        }
 
         private static void ListarCursos()
         {

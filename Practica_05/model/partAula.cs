@@ -6,7 +6,7 @@ namespace Practica_05.model
     {
         public override string ToString()
         {
-            return "ok";
+            return $"{Nombre} Capacidad {Capacidad}";
 
         }
     }
